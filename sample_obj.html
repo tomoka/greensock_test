@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SVG sample</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<script type="text/javascript" src="js/greensock/minified/TweenMax.min.js"></script>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body class="demo-5" onload="creatObj();">
+	<div class="container">
+		<header class="codrops-header">
+			<h1>SVG sample</h1>
+		</header>
+		<div class="content">
+			<div id="container">
+				<svg width="400" height="400" viewBox="0 0 400 400" style="border:solid 1px #000"  onClick="creatObj();">
+
+				<header class="codrops-header" onclick="">
+					<h1>SVG sample</h1>
+				</header>
+
+					<defs>
+						<filter id="goo">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+							<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7" result="cm" />
+							<feComposite in="SourceGraphic" in2="cm">
+						</filter>
+						<filter id="f2" x="-200%" y="-40%" width="400%" height="200%">
+							<feOffset in="SourceAlpha" dx="9" dy="3" />
+							<feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.51" />
+							<feComponentTransfer>
+								<feFuncA type="linear" slope="0.05" />
+							</feComponentTransfer>
+							<feMerge>
+								<feMergeNode/>
+								<feMergeNode in="SourceGraphic" />
+							</feMerge>
+						</filter>
+					</defs>
+					<g>
+						<!--
+							上部タグで設定したフィルタを使用したい時はグループ化した<g/>に設定を結びつけます。
+							このサンプルは結び付けをしていません。
+							<g filter="url(#goo)" style="fill:#FFFFFF">
+						-->
+<path id="svgCanvas" d="
+M49,89
+c0,2.2,1.8,4,4,4
+h4
+v14
+c0,3.4,2.6,6,6,6
+s6-2.6,6-6
+V93
+h8
+v14
+c0,3.4,2.6,6,6,6
+s6-2.6,6-6
+V93
+h4
+c2.2,0,4-1.8,4-4
+v-40
+H49
+V89
+z 
+
+M39,48.9
+c-3.4,0-6,2.6-6,6
+v28
+c0,3.4,2.6,6,6,6
+s6-2.6,6-6
+v-28
+C45,51.5,42.4,48.9,39,48.9
+z 
+
+M107.1,48.9
+c-3.4,0-6,2.6-6,6
+v28
+c0,3.4,2.6,6,6,6
+s6-2.6,6-6
+v-28
+C113.1,51.5,110.5,48.9,107.1,48.9
+z 
+
+M87.3,25.5
+l5.2-5.2
+c0.8-0.8,0.8-2,0-2.8
+c-0.8-0.8-2-0.8-2.8,0
+l-6,6
+c-3.2-1.6-6.8-2.6-10.6-2.6
+c-3.8,0-7.4,1-10.6,2.6
+l-6-6c-0.8-0.8-2-0.8-2.8,0
+c-0.8,0.8-0.8,2,0,2.8
+l5.2,5.2
+c-6,4.4-9.8,11.4-9.8,19.4
+h48
+C97.1,36.9,93.3,29.9,87.3,25.5
+z 
+
+M65,36.9
+h-4
+v-4
+h4
+V36.9
+z 
+
+M85.1,36.9
+h-4
+v-4
+h4
+V36.9
+z
+
+" fill="blue"/>
+
+					</g>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<script>
+(function() {
+var container = document.getElementById('container');
+var android = document.getElementById('svgCanvas');
+
+
+TweenMax.set(['svg'], {
+	position: 'absolute',
+	//top: '50%',
+	top: '100px',
+	left: '50%',
+	xPercent: -50,
+	yPercent: -50
+})
+
+TweenMax.set([container], {
+	position: 'absolute',
+	//top: '50%',
+	top: '100px',
+	left: '50%',
+	xPercent: -50,
+	yPercent: -50
+})
+
+TweenMax.set(android, {
+	transformOrigin: '50% 50%'
+})
+
+var tl = new TimelineMax({
+	repeat: -1,
+	paused: false,
+	repeatDelay: 0,
+	immediateRender: false
+});
+
+tl.timeScale(3);
+
+tl.to(android, 10, {
+	x: 150,
+	y: 150,
+	scale: 3,
+	alpha: 0,
+	ease: Power1.easeInOut
+},'+=1')
+})()
+
+	function creatObj(){
+		var xlinkns = "http://www.w3.org/1999/xlink";
+		var svgns = "http://www.w3.org/2000/svg";
+
+		//var svg = document.createElementNS(svgns, "svg");
+
+		var objElem = document.getElementById("container");
+		//フレーム内部のsvg要素を取得する．
+		//var svg = objElem.contentDocument.documentElement;
+		var svgElme = document.getElementsByTagName("svg");
+		var group = document.getElementsByTagName("g");
+
+		//var svg = document.getElementsByTagName("svg");
+		alert(svgElme.length);
+		//svg.setAttribute("width", "300");
+		//svg.setAttribute("height", "300");
+		//svg.setAttribute("viewBox", "0 0 100 30");
+		//container.appendChild(svg);
+
+		//var defs = document.createElementNS(svgns, "defs");
+		var rect = document.createElementNS(svgns, "circle");
+		/*rect.id = "MyRect";
+		rect.setAttribute("width", 60);
+		rect.setAttribute("height", 10);
+		rect.setAttribute("x", 0.1);
+		rect.setAttribute("y", 0.1);
+		rect.setAttribute("width", 99.8);
+		rect.setAttribute("height", 29.8);*/
+
+		rect.setAttribute("cx", 10);
+		rect.setAttribute("cy", 10);
+		rect.setAttribute("r", 10);
+
+		rect.setAttribute("fill", "none");
+		rect.setAttribute("stroke", "blue");
+		rect.setAttribute("stroke-width", 0.2);
+		//svg.appendChild(defs);
+		//defs.appendChild(rect);
+
+		//rect = document.createElementNS(svgns, "rect");
+
+		rect.setAttributeNS(xlinkns, "href", "#MyRect");
+		alert(rect);
+
+		document.querySelector("svg").appendChild(rect);
+		//document.getElementsByTagName("g").appendChild("rect");
+
+		//var use_node = document.createElementNS(svgns, "use");
+		//use_node.setAttribute("x", 20);
+		//use_node.setAttribute("y", 10);
+		//use_node.href.baseVal = "#MyRect";
+		//use_node.setAttributeNS(xlinkns, "href", "#MyRect");
+		//svg.appendChild(use_node);
+
+		}
+	</script>
+</body>
+</html>

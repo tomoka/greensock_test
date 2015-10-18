@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SVG sample</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<script type="text/javascript" src="js/greensock/minified/TweenMax.min.js"></script>
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<header class="codrops-header">
+			<h1>SVG sample</h1>
+			<p>黒枠の中をクリックしてください</p>
+		</header>
+		<div class="content">
+			<div id="container">
+				<svg width="400" height="400" viewBox="0 0 400 400" style="border:solid 1px #000"  onClick="creatObj();">
+					<defs>
+						<filter id="goo">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+							<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 17 -7" result="cm" />
+							<feComposite in="SourceGraphic" in2="cm">
+						</filter>
+						<filter id="f2" x="-200%" y="-40%" width="400%" height="200%">
+							<feOffset in="SourceAlpha" dx="9" dy="3" />
+							<feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.51" />
+							<feComponentTransfer>
+								<feFuncA type="linear" slope="0.05" />
+							</feComponentTransfer>
+							<feMerge>
+								<feMergeNode/>
+								<feMergeNode in="SourceGraphic" />
+							</feMerge>
+						</filter>
+					</defs>
+					<g id="group" filter="url(#goo)" style="fill:#FFFFFF">
+					</g>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+	<script>
+		var container = document.getElementById('container');
+		var xlinkns = "http://www.w3.org/1999/xlink";
+		var svgns = "http://www.w3.org/2000/svg";
+		var _x;
+		var _y;
+		var _z;
+		var _s; //scale
+
+		TweenMax.set(['svg'], {
+			position: 'absolute',
+			//top: '50%',
+			top: '100px',
+			left: '50%',
+			xPercent: -50,
+			yPercent: -50
+		})
+
+		TweenMax.set([container], {
+			position: 'absolute',
+			//top: '50%',
+			top: '100px',
+			left: '50%',
+			xPercent: -50,
+			yPercent: -50
+		})
+
+		function completeFunction() {
+		    var node = document.querySelector("g");
+		    var childNode = node.querySelector("path");
+		    	node.removeChild(childNode);
+		}
+
+	function creatObj(){
+		_x = Math.random()*400;
+		_y = Math.random()*400;
+		_z = Math.random()*360;
+		_s = Math.random()+0.1;
+		_d = "M147.6,66.4l-3.5-6h-15.3l6.7-11.6l-3.5-6h-6.9L115,60.4H92.3l11.3-19.7h20.3l3.5-6l-3.5-6h-13.4l7.7-13.3l-3.5-6h-6.9l-7.7,13.3l-6.7-11.6h-6.9l-3.5,6l10.1,17.6L81.9,54.4L70.5,34.7l10.1-17.6l-3.5-6h-6.9l-6.7,11.6L56,9.4H49l-3.5,6l7.7,13.3H39.9l-3.5,6l3.5,6h20.3l11.3,19.7l-22.7,0L38.7,42.8h-6.9l-3.5,6L35,60.4H19.7l-3.5,6l3.5,6H35L28.3,84l3.5,6l6.9,0l10.1-17.6h22.7L60.2,92.1H39.9l-3.5,6l3.5,6h13.4l-7.7,13.3l3.5,6H56l7.7-13.3l6.7,11.6h6.9l3.5-6L70.5,98.1l11.3-19.7l11.3,19.7l-10.1,17.6l3.5,6h6.9l6.7-11.6l7.7,13.3h6.9l3.5-6l-7.7-13.3h13.4l3.5-6l-3.5-6h-20.3L92.3,72.4H115L125.1,90h6.9l3.5-6l-6.7-11.6h15.3L147.6,66.4z";
+
+		var path = document.createElementNS(svgns, "path");
+		path.setAttribute("d", _d);
+
+		path.setAttribute("stroke", "white");
+		path.setAttribute("fill", "white");
+		path.setAttribute("fill-opacity", "0.3");
+		path.setAttribute("id", "snowIcon");
+		path.setAttribute("stroke-width", 0.2);
+		path.setAttribute("style", 'transform:matrix3d(' + Math.cos(_z)*_s + ',' +  Math.sin(-1*_z) +', 0, 0,' + Math.sin(_z) + ',' + Math.cos(_z)*_s + ', 0, 0,0, 0, 1, 0,'+ _x + ',' +  _y + ',' +  _z + ', 1)');
+
+		path.setAttributeNS(xlinkns, "href", "#snowIcon");
+
+		document.querySelector("g").appendChild(path);
+		var android = document.getElementById('snowIcon');
+
+		}
+
+
+
+	</script>
+</body>
+</html>
