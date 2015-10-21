@@ -1,3 +1,3 @@
 # svgAnimeTest
 アニメーションを検証するまでの下準備から、成果物までを格納する予定
-SVGアニメーション勉強Reposi
+SVGアニメーション勉強Repository
