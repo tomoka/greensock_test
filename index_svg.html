@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snap実験</title>
+  </head>
+  <body>
+    <header>
+      <h1>Snap Sample</h1>
+      青枠の中をクリックしてください。<br/>
+      青い雪の結晶が増えます。<br/>
+      黒丸をクリックするとconsole.logを出します。<br/>
+    </header>
+    <svg width="500" height="500" viewBox="-50 -50 450 450" class="svgBox" style="border:solid 1px blue;">
+      <circle cx="0" cy="50" r="20" class="circle1"></circle>
+    </svg>
+
+    <script src="snap.svg-min.js"></script>
+    <script>
+    var $circle = Snap( '.circle1' );
+    var $svgBox = Snap( '.svgBox' );
+    var xlinkns = "http://www.w3.org/1999/xlink";
+    var svgns = "http://www.w3.org/2000/svg";
+    var _x;
+    var _y;
+    var _z;
+    var _s; //scale
+
+    function anim () {
+        // cx の値を 0 にリセット
+        $circle.attr( { cx: 0 } );
+        // cx の値を 3 秒かけて 500 にアニメーションする
+        $circle.animate( {
+          cx: 500
+        }, 10000, function () {
+          anim();
+        } );
+      };
+    anim();
+    
+    $circle.click(function(e){
+        //circle.attr({fill: "blue"});
+        console.log("おされたよ！");
+    });
+    $svgBox.click(function(e){
+
+        /*乱数*/
+        _x = Math.random()*400;
+        _y = Math.random()*400;
+        _z = Math.random()*360;
+        _s = (Math.random()+0.1)*10;
+        
+        /*数字まとめる*/
+        _x = Math.floor(_x*_s)/10;
+        _y = Math.floor(_y*_s)/10;
+        _z = Math.floor(_z);
+        _s = Math.floor(_s)/10;
+        
+        _d = "M147.6,66.4l-3.5-6h-15.3l6.7-11.6l-3.5-6h-6.9L115,60.4H92.3l11.3-19.7h20.3l3.5-6l-3.5-6h-13.4l7.7-13.3l-3.5-6h-6.9l-7.7,13.3l-6.7-11.6h-6.9l-3.5,6l10.1,17.6L81.9,54.4L70.5,34.7l10.1-17.6l-3.5-6h-6.9l-6.7,11.6L56,9.4H49l-3.5,6l7.7,13.3H39.9l-3.5,6l3.5,6h20.3l11.3,19.7l-22.7,0L38.7,42.8h-6.9l-3.5,6L35,60.4H19.7l-3.5,6l3.5,6H35L28.3,84l3.5,6l6.9,0l10.1-17.6h22.7L60.2,92.1H39.9l-3.5,6l3.5,6h13.4l-7.7,13.3l3.5,6H56l7.7-13.3l6.7,11.6h6.9l3.5-6L70.5,98.1l11.3-19.7l11.3,19.7l-10.1,17.6l3.5,6h6.9l6.7-11.6l7.7,13.3h6.9l3.5-6l-7.7-13.3h13.4l3.5-6l-3.5-6h-20.3L92.3,72.4H115L125.1,90h6.9l3.5-6l-6.7-11.6h15.3L147.6,66.4z";
+
+        var path = document.createElementNS(svgns, "path");
+        path.setAttribute("d", _d);
+
+        path.setAttribute("stroke", "skyblue");
+        path.setAttribute("fill", "skyblue");
+        path.setAttribute("fill-opacity", "0.3");
+        path.setAttribute("id", "snowIcon");
+        path.setAttribute("stroke-width", 0.2);
+        path.setAttribute("style",
+                  'transform:translate(' + _x + 'px,' +  _y + 'px)' + 
+                        ' scale(' + _s + ',' + _s + ')' +
+                        ' rotate(' + _z + 'deg);' +
+                  '-webkit-transform:translate(' + _x + 'px,' +  _y + 'px)' + 
+                        ' scale(' + _s + ',' + _s + ')' +
+                        ' rotate(' + _z + 'deg);' 
+                  );
+
+        path.setAttributeNS(xlinkns, "href", "#snowIcon");
+
+        //document.querySelector("g").appendChild(path);
+        document.querySelector("svg").appendChild(path);
+        var android = document.getElementById('snowIcon');
+
+        });
+    </script>
+
+  </body>
+</html>
