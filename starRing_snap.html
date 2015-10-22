@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>snap実験</title>
+  </head>
+  <body>
+    <header>
+      <h1>Snap Sample Star</h1>
+      青枠の中をクリックしてください。<br/>
+      青い★がひろがります。<br/>
+    </header>
+    <svg width="500" height="500" viewBox="0 0 500 500" id="svg" class="svgBox" style="border:solid 1px blue;">
+    </svg>
+
+    <script src="snap.svg-min.js"></script>
+    <script>
+      var s = Snap("#svg");
+      var x = Array();
+      var y = Array();
+      var n = 0;
+
+      var p1 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p2 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p3 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p4 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p5 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p6 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p7 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p8 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p9 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p10 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p11 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+      var p0 = s.polygon("24.4,2 32,17.3 48.8,19.7 36.6,31.6 39.5,48.4 24.4,40.5 9.3,48.4 12.2,31.6 0,19.7 16.9,17.3").attr({
+              fill: "none",
+              stroke: "skyblue",
+              strokeWidth: 4,
+              transform: "translate(225,225)"
+          });
+
+      //30°のラジアン
+      //30 = (Math.cos(30),Math.sin(30));
+      for (i=0; i<720; i+=60) {
+        var rad = (Math.PI / 360)*i;
+        x[n] = Math.cos(rad)*200+225;
+        y[n] = Math.sin(rad)*200+225;
+        console.log("n=======>" + n + "-----" + x[n]);
+        console.log("n=======>" + n + "-----" + y[n]);
+        n++;
+      }
+
+      s.click(function(){
+        p0.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[0]+","+y[0]+")"}, 1000);
+        p1.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[1]+","+y[1]+")"}, 1000);
+        p2.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[2]+","+y[2]+")"}, 1000);
+        p3.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[3]+","+y[3]+")"}, 1000);
+        p4.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[4]+","+y[4]+")"}, 1000);
+        p5.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[5]+","+y[5]+")"}, 1000);
+        p6.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[6]+","+y[6]+")"}, 1000);
+        p7.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[7]+","+y[7]+")"}, 1000);
+        p8.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[8]+","+y[8]+")"}, 1000);
+        p9.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[9]+","+y[9]+")"}, 1000);
+        p10.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[10]+","+y[10]+")"}, 1000);
+        p11.stop().attr({transform: "translate(225,225)"}).animate({transform: "translate("+x[11]+","+y[11]+")"}, 1000);
+        n = 0;
+      });
+    </script>
+
+  </body>
+</html>

@@ -9,3 +9,6 @@ javascriptでsvgのDOM操作
 ### index_svg.html
 snapを使ったDOM操作と指定等
 追加とclickイベントハンドラの検証
+### starRing_snap.html
+snapを使ったtransformを使ったアニメーション
+かなりのべた書き
