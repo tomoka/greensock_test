@@ -83,11 +83,11 @@
       var roundRing = function(){
         Snap.animate(
           0,
-          360,
+          -36,
           function( value ){
             heartObj1.attr({ 'strokeDashoffset': value })
             },
-            30000,
+            1000,
             mina.liner,
             function(){
               roundRing();
