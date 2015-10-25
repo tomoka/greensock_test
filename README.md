@@ -10,5 +10,7 @@ javascriptでsvgのDOM操作
 snapを使ったDOM操作と指定等
 追加とclickイベントハンドラの検証
 ### starRing_snap.html
-snapを使ったtransformを使ったアニメーション
+snapのtransformを使ったアニメーション
 かなりのべた書き
+### roundLoder_snap.html
+ちょっとローディングっぽい感じで。原型。
