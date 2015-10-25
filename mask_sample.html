@@ -1,0 +1,33 @@
+<div xmlns="http://www.w3.org/1999/xhtml">
+	<svg height="500" version="1.1" width="500" xmlns="http://www.w3.org/2000/svg">
+		<desc>Created with Snap</desc>
+		<defs>
+			<mask id="Sig4hfel2ag">
+				<image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img.png" preserveAspectRatio="none" x="0" y="0" width="500" height="500"/>
+			</mask>
+		</defs>
+		<circle cx="250" cy="250" r="200" fill="#ffa500" stroke="#000000" mask="url('#Sig4hfel2ag')" style="stroke-width: 20px;"/>
+	</svg>
+
+	<script>
+
+	<![CDATA[
+
+		(function(container,display){
+			var paper = Snap(500,500).remove();
+			var image = paper.image("img.png",0,0,500,500);
+			var circle = paper.circle(100,100,250).attr({
+				fill: "orange",
+				stroke: "red",
+				strokeWidth: 15,
+				mask: image
+			});
+			paper.prependTo(container);
+			})(getContainer(),getDisplay());
+
+	]]>
+
+	<input type="button" value="編集" />
+	</script>
+
+</div>
