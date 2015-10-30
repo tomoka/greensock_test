@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex,nofollow">
-    <title>線を引く</title>
+    <title>メールパスの変更</title>
     <style type="text/css">
       .svg1{margin:50px auto;display:block;}
       .st0{fill:#FDFEFE;}
@@ -16,7 +16,8 @@
   </head>
   <body>
     <div>
-      <svg id="svg1" class="svg1" width="250" height="260" viewBox="0 0 250 260" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      	<h3 style="text-align:center;">記号をクリックしてください。</h3>
+      <svg id="svg1" class="svg1" width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
       		<g id="container">
       		</g>
       </svg>
@@ -25,17 +26,17 @@
     <script>
 		function clickAction(){
 			var paper = Snap(200,200).remove();
-			var mail = "M1.9,36.8V2.3h47.1v34.5H1.9z M4.2,33l13.5-13.5L4.2,6.1V33z M5.7,4.6l17.1,17.1c1.9,1.9,3.3,1.9,5.2,0L45.2,4.6H5.7z M45.2,34.5L31.6,21.1c-2.7,2.6-4.4,4.5-6.2,4.5c-1.8,0-3.6-1.8-6.2-4.5L5.7,34.5H45.2z M33.2,19.5L46.7,33V6.1L33.2,19.5z";
+			var mail = "M4.2,39l13.5-13.5L4.2,12.1V39z M5.7,10.6l17.1,17.1c1.9,1.9,3.3,1.9,5.2,0l17.2-17.1H5.7z M45.2,40.5L31.6,27.1c-2.7,2.6-4.4,4.5-6.2,4.5s-3.6-1.8-6.2-4.5L5.7,40.5H45.2z M33.2,25.5L46.7,39V12.1L33.2,25.5z";
 			var send   = "M43,19.2c0,9.6-7.8,17.4-17.4,17.4S8.2,28.9,8.2,19.2S16,1.8,25.6,1.8C34.5,1.8,43,9.6,43,19.2z";
-			var ok   = "M12.4,19.1 17.2,13.5 24.8,26.7 37.5,5.2 45.8,9 24.5,35";
-			var path = paper.path(send).attr({fill:"none", stroke:"skyblue", strokeWidth: "3", transform:"scale(4)"});
+			var ok   = "M12.4,19.1 17.2,13.5 24.8,26.7 37.5,5.2 45.8,9 24.5,35z";
+			var path = paper.path(mail).attr({fill:"skyblue", stroke:"blue", strokeWidth: "1", transform:"scale(4)"});
 				path.attr({
-			          strokeDasharray: "3",
-			          strokeDashoffset: 0,
-			          transform: "translate(71,71) scale(3)",
-			          opacity: "0.4"
+			          //strokeDasharray: "3",
+			          strokeDashoffset: 10,
+			          transform: "translate(0,0) scale(4)",
+			          opacity: "1"
 			        }).animate(
-			          {transform:"translate(71,71) rotate(300) scale(3)"},
+			          {transform:"translate(0,0) scale(4)"},
 			          1000,
 			          mina.liner,
 			          function( value ){
@@ -44,14 +45,18 @@
 			            1000,
 			            mina.liner,
 			            function(){
-			              cnscole.log("そうしんしたよ");
+			              console.log("そうしん-----");
 			            }
 			          );
 
 			paper.click(function(){
+				path.attr({path: mail}).animate({transform: "translate(66.8,59.6) scale(1)",opacity: "0"}, 1000,mina.backin,
+			            function(){
+			              console.log("そうしんしたよ");
+						if(path.inAnim().length>1){return;}
+			              path.attr({path: mail}).animate({path: ok,transform: "translate(0,0) scale(4)",opacity: "1"}, 2000,mina.elastic);
+			            });
 				console.log("loglog");
-				if(path.inAnim().length>0){return;}
-				path.attr({path: send}).animate({path: ok}, 500);
 			});
 			paper.prependTo(container);
 		};
