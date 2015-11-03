@@ -16,3 +16,4 @@ snapのtransformを使ったアニメーション
 ちょっとローディングっぽい感じで。原型。
 ### roundLoderSample_snap.html
 まだまだ調節中。
+文字周りと表示方法の調節。
